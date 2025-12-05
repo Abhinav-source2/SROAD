@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+boto3
+pandas
+python-dotenv
+requests
+pyathena
+streamlit
+plotly
+confluent-kafka

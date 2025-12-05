@@ -1,0 +1,20 @@
+# Ignore system folders
+__pycache__/
+venv/
+.env
+*.log
+
+# Ignore Kafka binaries
+kafka_2.13-4.1.0/
+kafka-data/
+
+# Ignore Terraform local state
+*.tfstate
+*.tfstate.backup
+
+# Ignore Python cache
+*.pyc
+
+# Ignore Docker build cache
+*__pycache__/
+.olllama/

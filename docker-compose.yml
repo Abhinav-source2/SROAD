@@ -1,0 +1,110 @@
+services:
+
+  # -----------------------
+  # Kafka (single node)
+  # -----------------------
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: sroad-kafka
+    restart: unless-stopped
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      CLUSTER_ID: "C1BlMFrQQ0eS6L0akU5k2w"
+    volumes:
+      - ./kafka-data:/var/lib/kafka/data
+    networks:
+      - sroad-net
+
+  # -----------------------
+  # Ollama LLM runtime
+  # -----------------------
+  ollama:
+    image: ollama/ollama:latest
+    container_name: sroad-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    networks:
+      - sroad-net
+
+  # -----------------------
+  # AI Agent (FastAPI)
+  # -----------------------
+  ai_agent:
+    build:
+      context: /mnt/c/SROAD/sroad_project/ai_agent
+      dockerfile: Dockerfile.agent
+    container_name: sroad-ai-agent
+    restart: unless-stopped
+    environment:
+      REDACTED: ${REDACTED}
+      AWS_REDACTED: ${AWS_REDACTED}
+      AWS_REGION: ${AWS_REGION}
+      ATHENA_DATABASE: ${ATHENA_DATABASE}
+      ATHENA_OUTPUT_LOCATION: ${ATHENA_OUTPUT_LOCATION}
+      OLLAMA_URL: http://sroad-ollama:11434
+    ports:
+      - "8101:8001"
+    depends_on:
+      - kafka
+      - ollama
+    networks:
+      - sroad-net
+
+  # -----------------------
+  # Streamlit Dashboard
+  # -----------------------
+  dashboard:
+    build:
+      context: /mnt/c/SROAD/sroad_project/dashboard
+      dockerfile: Dockerfile.dashboard
+    container_name: sroad-dashboard
+    restart: unless-stopped
+    environment:
+      REDACTED: ${REDACTED}
+      AWS_REDACTED: ${AWS_REDACTED}
+      AWS_REGION: ${AWS_REGION}
+      ATHENA_DATABASE: ${ATHENA_DATABASE}
+      ATHENA_OUTPUT_LOCATION: ${ATHENA_OUTPUT_LOCATION}
+      AI_AGENT_URL: http://sroad-ai-agent:8001
+    ports:
+      - "8601:8501"
+    depends_on:
+      - ai_agent
+    networks:
+      - sroad-net
+
+  # -----------------------
+  # Redis (optional)
+  # -----------------------
+  redis:
+    image: redis:7-alpine
+    container_name: sroad-redis
+    restart: unless-stopped
+    networks:
+      - sroad-net
+
+# -----------------------
+# Network & Volumes
+# -----------------------
+networks:
+  sroad-net:
+    driver: bridge
+
+volumes:
+  ollama_models:
+  kafka_data:
