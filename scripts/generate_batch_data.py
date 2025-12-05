@@ -18,8 +18,9 @@ FOLDER = "batch"
 FILE_NAME = "historical_orders.csv"
 AWS_REGION = "ap-southeast-2"
 
-AWS_ACCESS_KEY = "REDACTEDYQDU6WWUPBDZALUU"
-AWS_SECRET_KEY = "LlusH3HTD4PJt9UCCRUct55SvYZ99PueCEgVTrdM"
+
+REDACTED = os.getenv("REDACTED")
+AWS_REDACTED = os.getenv("AWS_REDACTED")
 
 
 if not AWS_ACCESS_KEY or not AWS_SECRET_KEY:
