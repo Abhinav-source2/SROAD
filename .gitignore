@@ -1,15 +1,27 @@
 # Python
 __pycache__/
 *.pyc
+*.pyo
 
 # Virtual environments
 venv/
 myenv/
 
+# Environment variables (MOST IMPORTANT)
+.env
+*.env
+scripts/*.env
+
+# Secrets
+*.pem
+*.key
+*.crt
+*.tfvars
+
 # Kafka data & logs
 kafka-data/
-kafka_2.13-4.1.0/
 logs/
+kafka_2.13-4.1.0/
 
 # Terraform
 .terraform/
@@ -25,3 +37,9 @@ ollama_models/
 # System files
 .DS_Store
 *.log
+
+# VSCode
+.vscode/
+
+# Docker
+*~ 
