@@ -12,21 +12,13 @@ import requests  # 👈 NEW: for calling AI agent
 # ==========================================================
 load_dotenv()
 
+DASHBOARD_TITLE = os.getenv("DASHBOARD_TITLE")
 AWS_ACCESS_KEY = os.getenv("REDACTED")
 AWS_SECRET_KEY = os.getenv("AWS_REDACTED")
+AWS_REGION = os.getenv("AWS_REGION")
+ATHENA_DATABASE = os.getenv("ATHENA_DATABASE")
+ATHENA_OUTPUT = os.getenv("ATHENA_OUTPUT_LOCATION")
 
-# NEW REGION
-AWS_REGION = os.getenv("AWS_REGION", "ap-southeast-2")
-
-ATHENA_DATABASE = os.getenv("ATHENA_DATABASE", "sroad_analytics")
-
-# NEW BUCKET + ATHENA RESULTS
-ATHENA_OUTPUT = os.getenv(
-    "ATHENA_OUTPUT_LOCATION",
-    "s3://sroad-data-2/sroad-athena-results-2/"
-)
-
-DASHBOARD_TITLE = os.getenv("DASHBOARD_TITLE", "SROAD Analytics Dashboard")
 
 # 👇 NEW: AI Agent endpoint
 AI_AGENT_URL = os.getenv("AI_AGENT_URL", "http://localhost:8001/ask")
@@ -48,13 +40,31 @@ st.caption("**Live Analytics:** Kafka → S3 → AWS Athena → Streamlit")
 # ==========================================================
 @st.cache_resource
 def athena_connection():
-    return connect(
-        aws_access_key_id=AWS_ACCESS_KEY,
-        aws_secret_access_key=AWS_SECRET_KEY,
-        s3_staging_dir=ATHENA_OUTPUT,
-        region_name=AWS_REGION,
-        work_group="primary"
-    )
+    """Secure Athena connection with validation + clear error reporting."""
+
+    # Validate env variables first
+    if not AWS_ACCESS_KEY or not AWS_SECRET_KEY or not AWS_REGION or not ATHENA_OUTPUT:
+        st.error("❌ Missing AWS credentials or Athena config.\n"
+                 "Check your environment variables:\n"
+                 "- REDACTED\n"
+                 "- AWS_REDACTED\n"
+                 "- AWS_REGION\n"
+                 "- ATHENA_OUTPUT_LOCATION")
+        return None
+
+    try:
+        conn = connect(
+            aws_access_key_id=AWS_ACCESS_KEY,
+            aws_secret_access_key=AWS_SECRET_KEY,
+            s3_staging_dir=ATHENA_OUTPUT,
+            region_name=AWS_REGION,
+            work_group="primary"
+        )
+        return conn
+
+    except Exception as e:
+        st.error(f"❌ Failed to connect to Athena: {e}")
+        return None
 
 conn = athena_connection()
 
