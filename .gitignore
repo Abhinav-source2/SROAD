@@ -1,20 +1,27 @@
-# Ignore system folders
+# Python
 __pycache__/
-venv/
-.env
-*.log
-
-# Ignore Kafka binaries
-kafka_2.13-4.1.0/
-kafka-data/
-
-# Ignore Terraform local state
-*.tfstate
-*.tfstate.backup
-
-# Ignore Python cache
 *.pyc
 
-# Ignore Docker build cache
-*__pycache__/
-.olllama/
+# Virtual environments
+venv/
+myenv/
+
+# Kafka data & logs
+kafka-data/
+kafka_2.13-4.1.0/
+logs/
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# Streamlit cache
+.streamlit/
+
+# Ollama models
+ollama_models/
+
+# System files
+.DS_Store
+*.log

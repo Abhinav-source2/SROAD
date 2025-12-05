@@ -46,7 +46,7 @@ services:
   # -----------------------
   ai_agent:
     build:
-      context: /mnt/c/SROAD/sroad_project/ai_agent
+      context: /mnt/c/SROAD/sroad_project/AI_Agent
       dockerfile: Dockerfile.agent
     container_name: sroad-ai-agent
     restart: unless-stopped
@@ -70,7 +70,7 @@ services:
   # -----------------------
   dashboard:
     build:
-      context: /mnt/c/SROAD/sroad_project/dashboard
+      context: /mnt/c/SROAD/sroad_project/Dashboard
       dockerfile: Dockerfile.dashboard
     container_name: sroad-dashboard
     restart: unless-stopped
