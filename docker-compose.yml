@@ -2,9 +2,6 @@ version: "3.8"
 
 services:
 
-  # ------------------------------------------------------
-  # 1️⃣ Kafka (Single Node KRaft Mode)
-  # ------------------------------------------------------
   kafka:
     image: confluentinc/cp-kafka:7.5.0
     container_name: sroad-kafka
@@ -29,9 +26,6 @@ services:
     networks:
       - sroad-net
 
-  # ------------------------------------------------------
-  # 2️⃣ Ollama LLM Runtime
-  # ------------------------------------------------------
   ollama:
     image: ollama/ollama:latest
     container_name: sroad-ollama
@@ -43,9 +37,6 @@ services:
     networks:
       - sroad-net
 
-  # ------------------------------------------------------
-  # 3️⃣ AI Agent (FastAPI)
-  # ------------------------------------------------------
   ai_agent:
     build:
       context: ./AI_Agent
@@ -70,9 +61,6 @@ services:
     networks:
       - sroad-net
 
-  # ------------------------------------------------------
-  # 4️⃣ Streamlit Dashboard
-  # ------------------------------------------------------
   dashboard:
     build:
       context: ./Dashboard
@@ -95,9 +83,6 @@ services:
     networks:
       - sroad-net
 
-  # ------------------------------------------------------
-  # 5️⃣ Redis Cache
-  # ------------------------------------------------------
   redis:
     image: redis:7-alpine
     container_name: sroad-redis
@@ -105,9 +90,6 @@ services:
     networks:
       - sroad-net
 
-# ------------------------------------------------------
-# NETWORKS + VOLUMES
-# ------------------------------------------------------
 networks:
   sroad-net:
     driver: bridge

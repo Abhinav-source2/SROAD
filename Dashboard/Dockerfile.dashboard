@@ -2,15 +2,11 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY dashboard.py .
+COPY requirements.txt .
 
-# Copy dashboard code folder
-COPY . /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose Streamlit port
 EXPOSE 8501
 
-# Run dashboard.py inside the Dashboard folder
-CMD ["streamlit", "run", "Dashboard/dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
