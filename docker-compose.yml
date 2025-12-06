@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   # ------------------------------------------------------
-  # 1️⃣ Kafka (Single Node KRaft)
+  # 1️⃣ Kafka (Single Node KRaft Mode)
   # ------------------------------------------------------
   kafka:
     image: confluentinc/cp-kafka:7.5.0
@@ -29,7 +29,6 @@ services:
     networks:
       - sroad-net
 
-
   # ------------------------------------------------------
   # 2️⃣ Ollama LLM Runtime
   # ------------------------------------------------------
@@ -44,14 +43,13 @@ services:
     networks:
       - sroad-net
 
-
   # ------------------------------------------------------
   # 3️⃣ AI Agent (FastAPI)
   # ------------------------------------------------------
   ai_agent:
     build:
-      context: /mnt/c/SROAD/sroad_project
-      dockerfile: AI_Agent/Dockerfile.agent
+      context: ./AI_Agent
+      dockerfile: Dockerfile.agent
     container_name: sroad-ai-agent
     restart: unless-stopped
     environment:
@@ -72,14 +70,13 @@ services:
     networks:
       - sroad-net
 
-
   # ------------------------------------------------------
   # 4️⃣ Streamlit Dashboard
   # ------------------------------------------------------
   dashboard:
     build:
-      context: /mnt/c/SROAD/sroad_project
-      dockerfile: Dashboard/Dockerfile.dashboard
+      context: ./Dashboard
+      dockerfile: Dockerfile.dashboard
     container_name: sroad-dashboard
     restart: unless-stopped
     environment:
@@ -94,13 +91,12 @@ services:
     depends_on:
       - ai_agent
     volumes:
-      - /mnt/c/SROAD/sroad_project:/app
+      - ./Dashboard:/app
     networks:
       - sroad-net
 
-
   # ------------------------------------------------------
-  # 5️⃣ Redis (Optional cache for agent)
+  # 5️⃣ Redis Cache
   # ------------------------------------------------------
   redis:
     image: redis:7-alpine
@@ -108,7 +104,6 @@ services:
     restart: unless-stopped
     networks:
       - sroad-net
-
 
 # ------------------------------------------------------
 # NETWORKS + VOLUMES
