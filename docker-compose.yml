@@ -67,7 +67,8 @@ services:
       - kafka
       - ollama
     volumes:
-      - /mnt/c/SROAD/sroad_project:/app
+      - ./AI_Agent:/app
+      - ./scripts:/app/scripts
     networks:
       - sroad-net
 
