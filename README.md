@@ -224,5 +224,5 @@ Kafka, AWS, Data Engineering, Streaming, Terraform, Docker, SQL, Python, AI
 ## 👤 Authors
 
 **Abhinav Jajoo**
+
 **Chaitanya Aggarwal**
-```
