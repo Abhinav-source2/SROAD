@@ -1,373 +1,201 @@
-🚀 SROAD
-Streaming Real-time Operations & Anomaly Detection
-<p align="center"> <img src="https://raw.githubusercontent.com/Abhinav-source2/SROAD/main/assets/sroad-architecture.png" alt="SROAD Architecture" width="85%"> </p> <p align="center"> <b>A production-grade, real-time data engineering platform for e-commerce analytics, anomaly detection, and AI-assisted insights.</b> </p> <p align="center"> <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen"/> <img src="https://img.shields.io/badge/Domain-Data%20Engineering-blue"/> <img src="https://img.shields.io/badge/Cloud-AWS-orange"/> <img src="https://img.shields.io/badge/Streaming-Kafka-black"/> <img src="https://img.shields.io/badge/Visualization-Streamlit-red"/> <img src="https://img.shields.io/badge/IaC-Terraform-purple"/> <img src="https://img.shields.io/badge/AI-LLaMA-lightgrey"/> </p>
-🧠 One-Line Explanation
+<h1 align="center">🚀 SROAD</h1>
 
-SROAD is a system that watches e-commerce orders in real time, finds important patterns or problems, and shows them instantly on a live dashboard.
+<p align="center">
+  <b>Streaming Real-time Operations & Anomaly Detection</b><br>
+  A production-grade, real-time data engineering platform for e-commerce analytics,
+  anomaly detection, and AI-assisted insights.
+</p>
 
-👶 Explain Like I’m 10
+<p align="center">
+  <img src="assets/architecture.png" alt="SROAD Architecture" width="85%">
+</p>
 
-Imagine a smart robot that watches every order in an online shop as soon as it happens, tells you how much money you’re making, and warns you if something strange happens — all automatically.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen">
+  <img src="https://img.shields.io/badge/Domain-Data%20Engineering-blue">
+  <img src="https://img.shields.io/badge/Cloud-AWS-orange">
+  <img src="https://img.shields.io/badge/Streaming-Kafka-black">
+  <img src="https://img.shields.io/badge/Visualization-Streamlit-red">
+  <img src="https://img.shields.io/badge/IaC-Terraform-purple">
+  <img src="https://img.shields.io/badge/AI-LLaMA-lightgrey">
+</p>
 
-❓ Why Does This Project Exist? (Problem Statement)
+---
 
-Modern e-commerce businesses generate huge amounts of data every second:
+## 🧠 One-Line Explanation
+**SROAD monitors e-commerce orders in real time, detects important patterns or anomalies, and visualizes insights instantly through a live dashboard.**
 
-orders
+---
 
-payments
+## 👶 Explain Like I’m 10
+Imagine a smart robot watching every order in an online shop.  
+It tells you how much money you’re making and warns you if something strange happens — automatically.
 
-locations
+---
 
-products
+## ❓ Why Does This Project Exist? (Problem Statement)
 
-customers
+Modern e-commerce businesses generate massive data every second:
 
-🚨 The Problem
+- Orders  
+- Payments  
+- Products  
+- Locations  
+- Customers  
 
+### 🚨 The Problem
 Most small and medium businesses:
+- Rely on manual reports  
+- Check data hours or days later  
+- Miss fraud, spikes, drops, or trends  
 
-rely on manual reports
+By the time problems are noticed, **damage is already done**.
 
-check data hours or days later
+### ❌ If This Problem Is Not Solved
+- Revenue drops go unnoticed  
+- Fraud is detected too late  
+- Marketing decisions become guesswork  
+- Businesses lose money and trust  
 
-miss fraud, spikes, drops, or trends
+---
 
-By the time they notice a problem, damage is already done.
+## 💡 The Solution — What I Built
 
-❌ If This Problem Is Not Solved
+**SROAD** is a fully automated, real-time data pipeline that:
 
-Revenue drops go unnoticed
+- Streams live orders using **Apache Kafka**
+- Stores all data in a cloud **data lake (Amazon S3)**
+- Analyzes data using **serverless SQL (Athena)**
+- Detects anomalies automatically
+- Explains insights using an **AI agent (LLaMA)**
+- Visualizes everything in a **live Streamlit dashboard**
 
-Fraud is detected too late
+### ✨ What Makes SROAD Special
+- Combines **real-time + historical data**
+- Fully **cloud-native & scalable**
+- Zero manual reporting
+- AI-assisted explanations
+- Infrastructure is **automated & reproducible**
 
-Marketing decisions are guesswork
+---
 
-Businesses lose money and trust
+## ✨ Key Features
 
-💡 The Solution — What I Built
+### 🔄 Real-Time Data Streaming
+- Orders processed instantly as they happen  
+- Example: Sudden sales spike visible within seconds  
 
-SROAD is a fully automated, real-time data pipeline that:
+### 🗄️ Unified Cloud Data Lake
+- Single source of truth in Amazon S3  
+- Example: Yesterday’s + today’s sales analyzed together  
 
-Streams live orders using Kafka
+### 📊 Serverless Analytics
+- SQL queries directly on S3 using Athena  
+- Example: “Which state generated the most revenue today?”  
 
-Stores everything in a cloud data lake (S3)
+### 🚨 Anomaly Detection
+- Flags unusual order patterns  
+- Example: ₹1,00,000 transaction flagged instantly  
 
-Analyzes data instantly using serverless SQL (Athena)
+### 🤖 AI-Assisted Analytics
+- Conversational explanations of trends and anomalies  
+- Example: “Why did sales spike today?”  
 
-Detects anomalies automatically
+---
 
-Explains insights using AI
+## 🧰 Tech Stack & Why It Was Chosen
 
-Visualizes everything in a live dashboard
+| Technology | Purpose |
+|----------|--------|
+| Python | Core language for streaming, analytics, AI |
+| Apache Kafka | Real-time data ingestion |
+| Amazon S3 | Scalable cloud data lake |
+| AWS Glue | Automatic schema discovery |
+| Amazon Athena | Serverless SQL analytics |
+| Streamlit | Interactive real-time dashboard |
+| Docker | Environment consistency |
+| Terraform | Infrastructure as Code |
+| LLaMA | AI-based insight explanations |
 
-✨ What makes SROAD special
+---
 
-Combines real-time + historical data
+## 🏗️ System Architecture (How It Works)
 
-Fully cloud-native & scalable
+1. Orders arrive from Shopify / synthetic generator  
+2. Kafka streams events in real time  
+3. Kafka consumers write data to S3  
+4. AWS Glue catalogs schemas  
+5. Athena runs analytical queries  
+6. AI agent interprets anomalies  
+7. Streamlit displays live insights  
 
-Zero manual reporting
+---
 
-AI-assisted explanations (LLaMA)
+## ⚙️ Installation & Setup
 
-Infrastructure is automated & reproducible
-
-✨ Key Features (With Real-Life Examples)
-🔄 Real-Time Data Streaming
-
-What: Orders are processed instantly as they happen
-
-Why: No waiting for end-of-day reports
-
-Example: A sudden sales spike appears on the dashboard within seconds
-
-🗄️ Unified Cloud Data Lake
-
-What: All data stored in Amazon S3
-
-Why: One source of truth
-
-Example: Yesterday’s and today’s sales analyzed together
-
-📊 Serverless Analytics (SQL on S3)
-
-What: Run SQL directly on raw data
-
-Why: No database servers to manage
-
-Example: “Which state generated the most revenue today?”
-
-🚨 Anomaly Detection
-
-What: Identifies unusually large orders or spikes
-
-Why: Detect fraud or system issues early
-
-Example: ₹1,00,000 order flagged instantly
-
-🤖 AI-Assisted Analytics (LLaMA)
-
-What: Conversational analytics & explanations
-
-Why: Non-technical users can understand insights
-
-Example: “Why did sales spike today?” → AI explains
-
-📈 Interactive Dashboard
-
-What: Live Streamlit dashboard
-
-Why: Insights at a glance
-
-Example: Real-time graphs updating automatically
-
-🧰 Tech Stack (With Reasoning)
-🐍 Python
-
-Why Python? Simple, powerful, industry-standard
-
-Solved: Streaming, AWS integration, analytics
-
-Beginner View: Easy to read and write
-
-🔥 Apache Kafka
-
-What: Real-time event streaming platform
-
-Why Kafka? Fast, fault-tolerant, scalable
-
-Solved: Live order ingestion
-
-☁️ Amazon S3
-
-What: Cloud object storage
-
-Why S3? Cheap, scalable, durable
-
-Solved: Central data lake
-
-📚 AWS Glue
-
-What: Data catalog & schema manager
-
-Why Glue? Automatic schema discovery
-
-Solved: No manual table creation
-
-🔍 Amazon Athena
-
-What: Serverless SQL engine
-
-Why Athena? Query data without databases
-
-Solved: Fast analytics
-
-📊 Streamlit
-
-What: Python dashboard framework
-
-Why Streamlit? Fast UI development
-
-Solved: Live visualization
-
-🐳 Docker
-
-What: Containerization
-
-Why Docker? Same behavior everywhere
-
-Solved: Environment issues
-
-🏗️ Terraform
-
-What: Infrastructure as Code
-
-Why Terraform? Reproducible cloud setup
-
-Solved: Manual AWS setup errors
-
-🧠 LLaMA AI Agent
-
-What: Large Language Model
-
-Why LLaMA? Explain anomalies in natural language
-
-Solved: Human-friendly analytics
-
-🏗️ System Architecture (Step-by-Step Flow)
-
-Orders arrive from Shopify / synthetic generator
-
-Kafka streams events in real time
-
-Kafka consumer writes data to S3
-
-AWS Glue detects schema
-
-Athena runs SQL analytics
-
-AI Agent interprets results
-
-Streamlit shows live dashboard
-
-🖼️ Visual Walkthrough
-🔧 Architecture Diagram
-
-Shows end-to-end data flow from ingestion → analytics → dashboard.
-
-📊 Dashboard View
-
-Displays:
-
-Revenue trends
-
-Top categories
-
-State-wise sales
-
-Anomalies
-
-Behind the scenes, Athena queries S3 and updates graphs live.
-
-⚙️ Installation & Setup (Beginner Friendly)
-1️⃣ Clone Repository
+```bash
 git clone https://github.com/Abhinav-source2/SROAD.git
 cd SROAD
-
-
-➡️ Downloads the project to your system
-
-2️⃣ Install Dependencies
 pip install -r requirements.txt
-
-
-➡️ Installs required Python libraries
-
-3️⃣ Configure Environment
-
-Create a .env file:
-
-AWS_ACCESS_KEY_ID=****
-AWS_SECRET_ACCESS_KEY=****
-KAFKA_BROKER=localhost:9092
-
-
-➡️ Stores secrets securely
-
-4️⃣ Run with Docker
 docker-compose up
 
+---
 
-➡️ Starts Kafka, consumers, dashboard, AI agent
+## 📈 Results & Impact
 
-▶️ How to Use the Project
+- **Near real-time operational visibility**  
+  Orders and revenue metrics are available within seconds instead of hours.
 
-Start the pipeline
+- **Automated anomaly detection**  
+  High-value or suspicious transactions are flagged immediately.
 
-Generate or stream orders
+- **Zero manual reporting**  
+  No spreadsheets or delayed reports — everything updates automatically.
 
-Open Streamlit dashboard
+- **Scales with data growth**  
+  Designed to handle increasing order volume without re-architecture.
 
-Watch real-time insights
+---
 
-Ask AI questions
+## 📚 What I Learned
 
-🎯 Expected Output
+- Real-time data engineering principles  
+- Designing cloud-native architectures  
+- Kafka-based streaming pipelines  
+- Serverless analytics using AWS Athena  
+- Infrastructure automation using Terraform  
+- Integrating AI into analytics systems  
 
-Live graphs
+---
 
-Anomaly alerts
+## 🔮 Future Improvements
 
-AI explanations
+- Machine learning–based anomaly detection (LSTM, Isolation Forest)  
+- Revenue forecasting and trend prediction  
+- CI/CD pipeline automation  
+- Kubernetes-based deployment  
+- Advanced monitoring and observability  
+- RAG-powered AI insights for deeper analytics  
 
-📈 Results & Impact
+---
 
-⏱️ Instant insights (seconds instead of hours)
+## ⭐ Why This Project Is Resume-Worthy
 
-🤖 Automated anomaly detection
+This project demonstrates real-world engineering skills such as:
 
-📊 Zero manual reporting
+- End-to-end system design  
+- Production-grade data engineering  
+- Cloud architecture expertise  
+- Streaming + batch data processing  
+- Infrastructure automation  
+- AI-assisted analytics  
 
-☁️ Scales with data growth
+### 🧾 ATS Keywords
+`Kafka`, `AWS`, `Data Engineering`, `Streaming`, `Terraform`, `Docker`, `SQL`, `Python`, `AI`
 
-💼 Why companies care:
-Faster decisions = more revenue + less risk
+---
 
-📚 What I Learned
+## 👤 Authors
 
-Real-time data engineering
-
-Cloud-native architecture
-
-Kafka streaming pipelines
-
-Serverless analytics
-
-Infrastructure as Code
-
-AI integration
-
-Production-grade system design
-
-🔮 Future Improvements
-
-ML-based anomaly detection (LSTM, Isolation Forest)
-
-Forecasting & prediction
-
-CI/CD pipelines
-
-Kubernetes deployment
-
-Advanced observability
-
-RAG-based AI analytics
-
-👥 Who Should Use This?
-
-🎓 Students learning data engineering
-
-👨‍💻 Developers building pipelines
-
-🏢 E-commerce companies
-
-👔 Recruiters evaluating real projects
-
-⭐ Why This Project Is Resume-Worthy
-✅ Skills Demonstrated
-
-Data Engineering
-
-Cloud Architecture
-
-Kafka Streaming
-
-AWS (S3, Glue, Athena)
-
-Docker & Terraform
-
-AI Integration
-
-System Design
-
-🧾 ATS Keywords
-
-Kafka, AWS, Data Lake, Streaming, Terraform, Docker, SQL, Python, AI, Anomaly Detection
-
-🧠 Engineering Depth
-
-This project proves I can:
-
-Design real-world systems
-
-Handle scale
-
-Automate infrastructure
-
-Think like a production engineer
-
-👨‍💻 Authors
-
-Abhinav Jajoo
-Chaitanya Aggarwal
+- **Abhinav Jajoo**  
+- **Chaitanya Aggarwal**
