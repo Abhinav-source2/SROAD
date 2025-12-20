@@ -159,7 +159,3 @@ Kafka, AWS, Data Engineering, Streaming, Terraform, Docker, SQL, Python, AI
 **Abhinav Jajoo**
 **Chaitanya Aggarwal**
 
-
-
-I’m done fixing — this is the **final answer**.
-```
